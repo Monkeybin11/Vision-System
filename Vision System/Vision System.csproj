@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{011DF2D3-5AB6-4ECA-A8C5-DE5545CCE4A3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Vision_System</RootNamespace>
+    <AssemblyName>Vision System</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Vision.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Automation.BDaq, Version=1.0.1.0, Culture=neutral, PublicKeyToken=463f5928d60183a0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\Automation.BDaq.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Controls, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Controls.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Core, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Display.Controls, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Display.Controls.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile.Controls, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.Controls.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Core, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup.Controls, Version=57.4.1.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <HintPath>..\..\..\..\..\..\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.Controls.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommonModule">
+      <HintPath>Dll\CommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="OmronFins_TCP">
+      <HintPath>Dll\OmronFins_TCP.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TwinCAT.Ads, Version=4.2.109.0, Culture=neutral, PublicKeyToken=180016cd49e5e8c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\TwinCAT\AdsApi\.NET\v4.0.30319\TwinCAT.Ads.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CogDisplayCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CogDisplayCtl.Designer.cs">
+      <DependentUpon>CogDisplayCtl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CsvHelper\CsvFileUltity.cs" />
+    <Compile Include="FormFailureSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFailureSelect.Designer.cs">
+      <DependentUpon>FormFailureSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCommDataSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommDataSelect.Designer.cs">
+      <DependentUpon>FormCommDataSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCommFormatSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommFormatSetting.Designer.cs">
+      <DependentUpon>FormCommFormatSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCommAddressEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommAddressEdit.Designer.cs">
+      <DependentUpon>FormCommAddressEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormParamSetting2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormParamSetting2.Designer.cs">
+      <DependentUpon>FormParamSetting2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPartNoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartNoEdit.Designer.cs">
+      <DependentUpon>FormPartNoEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPartNoCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartNoCopy.Designer.cs">
+      <DependentUpon>FormPartNoCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPortBitSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPortBitSelect.Designer.cs">
+      <DependentUpon>FormPortBitSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFailureSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFailureSetting.Designer.cs">
+      <DependentUpon>FormFailureSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPartNoAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartNoAdd.Designer.cs">
+      <DependentUpon>FormPartNoAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataGridView.Designer.cs">
+      <DependentUpon>FormDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormParamSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormParamSetting.Designer.cs">
+      <DependentUpon>FormParamSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPartNoManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPartNoManage.Designer.cs">
+      <DependentUpon>FormPartNoManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProgramRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgramRestore.Designer.cs">
+      <DependentUpon>FormProgramRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProgramBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgramBackup.Designer.cs">
+      <DependentUpon>FormProgramBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIOSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIOSetting.Designer.cs">
+      <DependentUpon>FormIOSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSaveSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSaveSetting.Designer.cs">
+      <DependentUpon>FormSaveSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetting.Designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormShowMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShowMsg.Designer.cs">
+      <DependentUpon>FormShowMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOmronFinsSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOmronFinsSetting.Designer.cs">
+      <DependentUpon>FormOmronFinsSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTwinCatSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTwinCatSetting.Designer.cs">
+      <DependentUpon>FormTwinCatSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IOHelper\Dask.cs" />
+    <Compile Include="IOHelper\SingleCameraIO.cs" />
+    <Compile Include="JobHelper\JobHelper.cs" />
+    <Compile Include="FormShowAsynProg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShowAsynProg.Designer.cs">
+      <DependentUpon>FormShowAsynProg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPasswordPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPasswordPrompt.Designer.cs">
+      <DependentUpon>FormPasswordPrompt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSplash.Designer.cs">
+      <DependentUpon>FormSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IniHelper\IniFile.cs" />
+    <Compile Include="IniHelper\SettingHelper.cs" />
+    <Compile Include="IOHelper\AdvantechIOHelper.cs" />
+    <Compile Include="OmronFinsHelper\OmronFinsHelper.cs" />
+    <Compile Include="PageCameraSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageCameraSetting.Designer.cs">
+      <DependentUpon>PageCameraSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageEdit.Designer.cs">
+      <DependentUpon>PageEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageHome.Designer.cs">
+      <DependentUpon>PageHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagePlayBack.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PagePlayBack.Designer.cs">
+      <DependentUpon>PagePlayBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageStatistics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageStatistics.Designer.cs">
+      <DependentUpon>PageStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Password\PasswordFile.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Splasher\ISplashForm.cs" />
+    <Compile Include="Splasher\Splasher.cs" />
+    <Compile Include="SQLHelper\SQLHelper.cs" />
+    <Compile Include="strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TwincatHelper\TwincatHelper.cs" />
+    <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="CogDisplayCtl.resx">
+      <DependentUpon>CogDisplayCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFailureSelect.resx">
+      <DependentUpon>FormFailureSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommDataSelect.resx">
+      <DependentUpon>FormCommDataSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommFormatSetting.resx">
+      <DependentUpon>FormCommFormatSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommAddressEdit.resx">
+      <DependentUpon>FormCommAddressEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormParamSetting2.resx">
+      <DependentUpon>FormParamSetting2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartNoEdit.resx">
+      <DependentUpon>FormPartNoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartNoCopy.resx">
+      <DependentUpon>FormPartNoCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPortBitSelect.resx">
+      <DependentUpon>FormPortBitSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFailureSetting.resx">
+      <DependentUpon>FormFailureSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartNoAdd.resx">
+      <DependentUpon>FormPartNoAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataGridView.resx">
+      <DependentUpon>FormDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormParamSetting.resx">
+      <DependentUpon>FormParamSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPasswordPrompt.resx">
+      <DependentUpon>FormPasswordPrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPartNoManage.resx">
+      <DependentUpon>FormPartNoManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgramRestore.resx">
+      <DependentUpon>FormProgramRestore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgramBackup.resx">
+      <DependentUpon>FormProgramBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIOSetting.resx">
+      <DependentUpon>FormIOSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSaveSetting.resx">
+      <DependentUpon>FormSaveSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShowMsg.resx">
+      <DependentUpon>FormShowMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShowAsynProg.resx">
+      <DependentUpon>FormShowAsynProg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSplash.resx">
+      <DependentUpon>FormSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOmronFinsSetting.resx">
+      <DependentUpon>FormOmronFinsSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTwinCatSetting.resx">
+      <DependentUpon>FormTwinCatSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageCameraSetting.resx">
+      <DependentUpon>PageCameraSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageEdit.resx">
+      <DependentUpon>PageEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageHome.resx">
+      <DependentUpon>PageHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagePlayBack.resx">
+      <DependentUpon>PagePlayBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PageStatistics.resx">
+      <DependentUpon>PageStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reject.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\start.png" />
+    <None Include="Resources\pause.png" />
+    <None Include="Resources\continue.png" />
+    <None Include="Resources\navigate-right.png" />
+    <None Include="Resources\navigate-left.png" />
+    <None Include="Resources\hide-right.png" />
+    <None Include="Resources\hide-left.png" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\camera setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image-mode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load-from-computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run-once.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video mode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\display-setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet-green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\data-chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backup-restore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo-small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\item up.png" />
+    <None Include="Resources\item down.png" />
+    <None Include="Resources\item copy.png" />
+    <None Include="Resources\item rename.png" />
+    <None Include="Resources\item delete.png" />
+    <None Include="Resources\item add.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\watermark.png" />
+    <None Include="Resources\clear.png" />
+    <None Include="Resources\Reset-Layout.png" />
+    <None Include="Resources\V-Split.png" />
+    <None Include="Resources\H-Split.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+    <Content Include="Vision.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
