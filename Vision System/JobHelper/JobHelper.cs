@@ -64,6 +64,8 @@ namespace Vision_System
         #region job setting
         // CCD名字
         private string _ccdName;
+        // 是否保存图片，默认为保存，最终图片是否保存还要根据总的设置要求进行判断
+        private bool _isSaveImage = true;
         //单个CCD的子料号列表
         private List<string> _singleCCDPartNoList = new List<string>();
         // CCD触发延时
@@ -92,6 +94,8 @@ namespace Vision_System
         private string _showOutputDataName = "";
         #endregion jot setting end
 
+        public string CcdName { get => _ccdName; set => _ccdName = value; }
+        public bool IsSaveImage { get => _isSaveImage; set => _isSaveImage = value; }
         public int DoOutTimePeriod { get => _DoOutTimePeriod; set => _DoOutTimePeriod = value; }
         public int CCDAcqDelayTimeMilliSecond { get => _CCDAcqDelayTimeMilliSecond; set => _CCDAcqDelayTimeMilliSecond = value; }
         public List<int> TotalCountForItem { get => _TotalCountForItem; set => _TotalCountForItem = value; }
@@ -119,7 +123,6 @@ namespace Vision_System
         public int? AttachedCCDIndex { get => _attachedCCDIndex; set => _attachedCCDIndex = value; }
         public List<object> OutputData { get => _outputData; set => _outputData = value; }
         public List<object> InputData { get => _inputData; set => _inputData = value; }
-        public string CcdName { get => _ccdName; set => _ccdName = value; }
         public string ShowOutputDataName { get => _showOutputDataName; set => _showOutputDataName = value; }
 
         /// <summary>
@@ -134,11 +137,19 @@ namespace Vision_System
             string strTemp;
             string[] strArray;
             IniFile ConfigIniFile = new IniFile(strConfigPath);
+
             // CCD名称，显示在界面的名字
             strTemp = ConfigIniFile.IniReadValue("CCD" + (camIndex + 1), "Name");
             if (!string.IsNullOrEmpty(strTemp))
             {
                 CcdName = strTemp;
+            }
+
+            // 单个CCD图片是否保存
+            strTemp = ConfigIniFile.IniReadValue("CCD" + (camIndex + 1), "ImageSave");
+            if (!string.IsNullOrEmpty(strTemp))
+            {
+                IsSaveImage = strTemp == "1" ? true : false;
             }
 
             // 获取单个CCD的料号列表

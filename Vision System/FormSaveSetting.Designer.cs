@@ -29,11 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkImageSaveCCD8 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD4 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD6 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD2 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD7 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD3 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD5 = new System.Windows.Forms.CheckBox();
+            this.chkImageSaveCCD1 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbImageFormat = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbImageSize = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtImageKeepDays = new System.Windows.Forms.TextBox();
@@ -61,11 +70,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD8);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD4);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD6);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD2);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD7);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD3);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD5);
+            this.groupBox1.Controls.Add(this.chkImageSaveCCD1);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.cmbImageFormat);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbImageSize);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtImageKeepDays);
@@ -77,16 +95,96 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(17, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(488, 267);
+            this.groupBox1.Size = new System.Drawing.Size(488, 315);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "保存图片";
+            // 
+            // chkImageSaveCCD8
+            // 
+            this.chkImageSaveCCD8.AutoSize = true;
+            this.chkImageSaveCCD8.Location = new System.Drawing.Point(306, 131);
+            this.chkImageSaveCCD8.Name = "chkImageSaveCCD8";
+            this.chkImageSaveCCD8.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD8.TabIndex = 10;
+            this.chkImageSaveCCD8.Text = "CCD8";
+            this.chkImageSaveCCD8.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD4
+            // 
+            this.chkImageSaveCCD4.AutoSize = true;
+            this.chkImageSaveCCD4.Location = new System.Drawing.Point(306, 111);
+            this.chkImageSaveCCD4.Name = "chkImageSaveCCD4";
+            this.chkImageSaveCCD4.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD4.TabIndex = 10;
+            this.chkImageSaveCCD4.Text = "CCD4";
+            this.chkImageSaveCCD4.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD6
+            // 
+            this.chkImageSaveCCD6.AutoSize = true;
+            this.chkImageSaveCCD6.Location = new System.Drawing.Point(158, 131);
+            this.chkImageSaveCCD6.Name = "chkImageSaveCCD6";
+            this.chkImageSaveCCD6.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD6.TabIndex = 10;
+            this.chkImageSaveCCD6.Text = "CCD6";
+            this.chkImageSaveCCD6.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD2
+            // 
+            this.chkImageSaveCCD2.AutoSize = true;
+            this.chkImageSaveCCD2.Location = new System.Drawing.Point(158, 111);
+            this.chkImageSaveCCD2.Name = "chkImageSaveCCD2";
+            this.chkImageSaveCCD2.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD2.TabIndex = 10;
+            this.chkImageSaveCCD2.Text = "CCD2";
+            this.chkImageSaveCCD2.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD7
+            // 
+            this.chkImageSaveCCD7.AutoSize = true;
+            this.chkImageSaveCCD7.Location = new System.Drawing.Point(232, 131);
+            this.chkImageSaveCCD7.Name = "chkImageSaveCCD7";
+            this.chkImageSaveCCD7.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD7.TabIndex = 10;
+            this.chkImageSaveCCD7.Text = "CCD7";
+            this.chkImageSaveCCD7.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD3
+            // 
+            this.chkImageSaveCCD3.AutoSize = true;
+            this.chkImageSaveCCD3.Location = new System.Drawing.Point(232, 111);
+            this.chkImageSaveCCD3.Name = "chkImageSaveCCD3";
+            this.chkImageSaveCCD3.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD3.TabIndex = 10;
+            this.chkImageSaveCCD3.Text = "CCD3";
+            this.chkImageSaveCCD3.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD5
+            // 
+            this.chkImageSaveCCD5.AutoSize = true;
+            this.chkImageSaveCCD5.Location = new System.Drawing.Point(84, 131);
+            this.chkImageSaveCCD5.Name = "chkImageSaveCCD5";
+            this.chkImageSaveCCD5.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD5.TabIndex = 10;
+            this.chkImageSaveCCD5.Text = "CCD5";
+            this.chkImageSaveCCD5.UseVisualStyleBackColor = true;
+            // 
+            // chkImageSaveCCD1
+            // 
+            this.chkImageSaveCCD1.AutoSize = true;
+            this.chkImageSaveCCD1.Location = new System.Drawing.Point(84, 111);
+            this.chkImageSaveCCD1.Name = "chkImageSaveCCD1";
+            this.chkImageSaveCCD1.Size = new System.Drawing.Size(68, 24);
+            this.chkImageSaveCCD1.TabIndex = 10;
+            this.chkImageSaveCCD1.Text = "CCD1";
+            this.chkImageSaveCCD1.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(27, 182);
+            this.label5.Location = new System.Drawing.Point(27, 231);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 20);
             this.label5.TabIndex = 9;
@@ -99,7 +197,7 @@
             this.cmbImageFormat.Items.AddRange(new object[] {
             "位图文件 (*.bmp)",
             "JPEG文件 (*jpg)"});
-            this.cmbImageFormat.Location = new System.Drawing.Point(128, 179);
+            this.cmbImageFormat.Location = new System.Drawing.Point(128, 228);
             this.cmbImageFormat.Name = "cmbImageFormat";
             this.cmbImageFormat.Size = new System.Drawing.Size(268, 27);
             this.cmbImageFormat.TabIndex = 8;
@@ -108,7 +206,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(27, 147);
+            this.label3.Location = new System.Drawing.Point(27, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 7;
@@ -122,7 +220,7 @@
             "完全",
             "半",
             "四分之一"});
-            this.cmbImageSize.Location = new System.Drawing.Point(128, 144);
+            this.cmbImageSize.Location = new System.Drawing.Point(128, 193);
             this.cmbImageSize.Name = "cmbImageSize";
             this.cmbImageSize.Size = new System.Drawing.Size(268, 27);
             this.cmbImageSize.TabIndex = 6;
@@ -130,11 +228,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(407, 112);
+            this.label1.Location = new System.Drawing.Point(407, 161);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "天";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(27, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 20);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "选择：";
             // 
             // label4
             // 
@@ -148,7 +255,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 112);
+            this.label2.Location = new System.Drawing.Point(27, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 20);
             this.label2.TabIndex = 5;
@@ -156,7 +263,7 @@
             // 
             // txtImageKeepDays
             // 
-            this.txtImageKeepDays.Location = new System.Drawing.Point(128, 110);
+            this.txtImageKeepDays.Location = new System.Drawing.Point(128, 159);
             this.txtImageKeepDays.Name = "txtImageKeepDays";
             this.txtImageKeepDays.Size = new System.Drawing.Size(268, 25);
             this.txtImageKeepDays.TabIndex = 3;
@@ -171,7 +278,7 @@
             // btnOpenImageFolder
             // 
             this.btnOpenImageFolder.BackColor = System.Drawing.SystemColors.Control;
-            this.btnOpenImageFolder.Location = new System.Drawing.Point(31, 221);
+            this.btnOpenImageFolder.Location = new System.Drawing.Point(31, 270);
             this.btnOpenImageFolder.Name = "btnOpenImageFolder";
             this.btnOpenImageFolder.Size = new System.Drawing.Size(365, 33);
             this.btnOpenImageFolder.TabIndex = 1;
@@ -199,6 +306,7 @@
             this.chkSaveNGImage.TabIndex = 0;
             this.chkSaveNGImage.Text = "NG 图片";
             this.chkSaveNGImage.UseVisualStyleBackColor = true;
+            this.chkSaveNGImage.CheckedChanged += new System.EventHandler(this.chkSaveNGImage_CheckedChanged);
             // 
             // chkSaveOKImage
             // 
@@ -209,12 +317,13 @@
             this.chkSaveOKImage.TabIndex = 0;
             this.chkSaveOKImage.Text = "OK 图片";
             this.chkSaveOKImage.UseVisualStyleBackColor = true;
+            this.chkSaveOKImage.CheckedChanged += new System.EventHandler(this.chkSaveOKImage_CheckedChanged);
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.Control;
             this.btnSave.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(125, 526);
+            this.btnSave.Location = new System.Drawing.Point(125, 574);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 35);
             this.btnSave.TabIndex = 4;
@@ -235,7 +344,7 @@
             this.groupBox3.Controls.Add(this.chkSaveData);
             this.groupBox3.Controls.Add(this.btnOpenDataFolder);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(17, 281);
+            this.groupBox3.Location = new System.Drawing.Point(17, 329);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(488, 239);
             this.groupBox3.TabIndex = 53;
@@ -267,7 +376,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 24);
+            this.label6.Location = new System.Drawing.Point(27, 28);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 6;
@@ -342,7 +451,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(293, 526);
+            this.button1.Location = new System.Drawing.Point(293, 574);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 35);
             this.button1.TabIndex = 4;
@@ -354,7 +463,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 572);
+            this.ClientSize = new System.Drawing.Size(521, 618);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button1);
@@ -400,5 +509,14 @@
         private System.Windows.Forms.Button btnOpenDataFolder;
         private System.Windows.Forms.ComboBox cmbDataFormat;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD4;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD2;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD3;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD8;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD6;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD7;
+        private System.Windows.Forms.CheckBox chkImageSaveCCD5;
     }
 }

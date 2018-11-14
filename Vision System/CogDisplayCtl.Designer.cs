@@ -32,9 +32,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CogDisplayCtl));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cogRecordDisplay = new Cognex.VisionPro.CogRecordDisplay();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripBtnLive = new System.Windows.Forms.ToolStripButton();
@@ -123,7 +123,7 @@
             this.cogRecordDisplay.MouseWheelSensitivity = 1D;
             this.cogRecordDisplay.Name = "cogRecordDisplay";
             this.cogRecordDisplay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cogRecordDisplay.OcxState")));
-            this.cogRecordDisplay.Size = new System.Drawing.Size(679, 241);
+            this.cogRecordDisplay.Size = new System.Drawing.Size(631, 241);
             this.cogRecordDisplay.TabIndex = 1;
             this.cogRecordDisplay.DoubleClick += new System.EventHandler(this.cogRecordDisplay_DoubleClick);
             // 
@@ -144,7 +144,7 @@
             this.toolStripBtnInfo});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(691, 30);
+            this.toolStrip.Size = new System.Drawing.Size(643, 30);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -288,7 +288,7 @@
             this.cogDisplayStatusBar.Margin = new System.Windows.Forms.Padding(0);
             this.cogDisplayStatusBar.Name = "cogDisplayStatusBar";
             this.cogDisplayStatusBar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cogDisplayStatusBar.Size = new System.Drawing.Size(691, 22);
+            this.cogDisplayStatusBar.Size = new System.Drawing.Size(643, 22);
             this.cogDisplayStatusBar.TabIndex = 0;
             this.cogDisplayStatusBar.Use3DCoordinateSpaceTree = false;
             // 
@@ -316,7 +316,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(685, 514);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(637, 514);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // panel1
@@ -347,14 +347,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 247);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(685, 20);
+            this.panel1.Size = new System.Drawing.Size(637, 20);
             this.panel1.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblRunData);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(465, 0);
+            this.panel2.Location = new System.Drawing.Point(417, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(220, 20);
             this.panel2.TabIndex = 12;
@@ -583,33 +583,33 @@
             // chartData
             // 
             this.chartData.BackColor = System.Drawing.SystemColors.Control;
-            chartArea2.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisX.LabelStyle.IsEndLabelVisible = false;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.SystemColors.ControlDark;
-            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.AxisX.MaximumAutoSize = 15F;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.SystemColors.ControlDark;
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.BackColor = System.Drawing.SystemColors.ControlLight;
-            chartArea2.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea2.Name = "ChartArea1";
-            this.chartData.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.LabelStyle.IsEndLabelVisible = false;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.SystemColors.ControlDark;
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.AxisX.MaximumAutoSize = 15F;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.SystemColors.ControlDark;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.BackColor = System.Drawing.SystemColors.ControlLight;
+            chartArea1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
+            chartArea1.Name = "ChartArea1";
+            this.chartData.ChartAreas.Add(chartArea1);
             this.chartData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartData.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartData.Legends.Add(legend1);
             this.chartData.Location = new System.Drawing.Point(0, 267);
             this.chartData.Margin = new System.Windows.Forms.Padding(0);
             this.chartData.Name = "chartData";
             this.chartData.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             this.chartData.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chartData.Size = new System.Drawing.Size(685, 98);
+            this.chartData.Size = new System.Drawing.Size(637, 98);
             this.chartData.TabIndex = 3;
             this.chartData.Text = "chartData";
             // 
@@ -618,21 +618,21 @@
             this.dgvDataResultView.AllowUserToAddRows = false;
             this.dgvDataResultView.AllowUserToDeleteRows = false;
             this.dgvDataResultView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDataResultView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDataResultView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDataResultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDataResultView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDataResultView.Location = new System.Drawing.Point(3, 368);
             this.dgvDataResultView.Name = "dgvDataResultView";
             this.dgvDataResultView.RowHeadersVisible = false;
             this.dgvDataResultView.RowTemplate.Height = 24;
-            this.dgvDataResultView.Size = new System.Drawing.Size(679, 143);
+            this.dgvDataResultView.Size = new System.Drawing.Size(631, 143);
             this.dgvDataResultView.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -646,7 +646,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(691, 520);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(643, 520);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // CogDisplayCtl
@@ -658,7 +658,7 @@
             this.Controls.Add(this.toolStrip);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CogDisplayCtl";
-            this.Size = new System.Drawing.Size(691, 572);
+            this.Size = new System.Drawing.Size(643, 572);
             this.Load += new System.EventHandler(this.CogDisplayCtl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cogRecordDisplay)).EndInit();
             this.toolStrip.ResumeLayout(false);

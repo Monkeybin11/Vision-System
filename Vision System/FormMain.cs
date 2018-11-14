@@ -129,7 +129,7 @@ namespace Vision_System
             Splasher.Progress = 10;
             InitializeComponent();
             strBaseDirectory = Utility.GetThisExecutableDirectory();
-            StatusLabel_StartupPath.Text = strBaseDirectory + Application.ProductName + ".exe";
+            StatusLabel_StartupPath.Text = Application.ExecutablePath;
             CheckForIllegalCrossThreadCalls = false;
 
             // 加载配置文件
@@ -150,6 +150,7 @@ namespace Vision_System
             {
                 jobHelper[i] = new JobHelper();
                 strCCDConfigFilePath[i] = strBaseDirectory + "Config\\CCD" + (i + 1) + ".ini";
+                ccdConfigIniFile[i] = new IniFile(strCCDConfigFilePath[i]);
                 jobHelper[i].ReadJobSetting(i, strCCDConfigFilePath[i], CCDToolBlock[i]);
             }
             // 读取IO端口设置参数
@@ -466,6 +467,7 @@ namespace Vision_System
             bgwSaveData = new BackgroundWorker[camNumber];
             csvList = new CsvRow[camNumber];
             dataTableSingleCCDFins = new DataTable[camNumber];
+            ccdConfigIniFile = new IniFile[camNumber];
     }
 
     /// <summary>
@@ -1754,14 +1756,15 @@ namespace Vision_System
             }*/
 
             // 检查是否需要保存OK或NG图片
-            if ((settingHelper.IsSaveOKImage &&
-                jobHelper[index].JobTotalResult) ||
-                (settingHelper.IsSaveNGImage &&
-                !jobHelper[index].JobTotalResult))
+            if (jobHelper[index].IsSaveImage)
             {
-                // 保存图像
-                if (!bgwSaveImage[index].IsBusy)
-                    bgwSaveImage[index].RunWorkerAsync(index);
+                if ((settingHelper.IsSaveOKImage && jobHelper[index].JobTotalResult) ||
+                    (settingHelper.IsSaveNGImage && !jobHelper[index].JobTotalResult))
+                {
+                    // 如果满足以上条件：总设置里面保存OK或NG图片，同时单个CCD保存图像，启动保存图片线程进行图片保存
+                    if (!bgwSaveImage[index].IsBusy)
+                        bgwSaveImage[index].RunWorkerAsync(index);
+                }
             }
 
             // 检查是否需要保存数据
@@ -1777,6 +1780,7 @@ namespace Vision_System
 
             // 更新进度
             bgwCCDTrigger[index].ReportProgress(90, index);
+
             // 传递index数据给DoWorkEventArgs,这个参数可以被RunWorkerCompleted句柄访问
             e.Result = index;
         }
@@ -1802,7 +1806,7 @@ namespace Vision_System
         }
 
         /// <summary>
-        /// 触发完成后处理事件
+        /// 触发完成后处理事件，更新主界面
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1898,8 +1902,8 @@ namespace Vision_System
             {
                 switch (jobHelper[index].TriggerMode)
                 {
+                    // 独立触发源，检查是否有其他相机是跟随该相机二次触发，如果有，则不需要输出信号
                     case TriggerMode.FirstOrIndependentTrigger:
-                        // 独立触发源，检查是否有其他相机是跟随该相机二次触发，如果有，则不需要输出信号
                         // 如果是独立的触发源且不是二次拍照，则需要输出
                         if (CheckCCDOutputRequired(index))
                         {
@@ -2962,7 +2966,7 @@ namespace Vision_System
         }
         #endregion
 
-        #region Save image in local computer
+        #region Backgroundworker to save image in local computer
         /// <summary>
         /// 初始化图像保存后台线程
         /// </summary>
@@ -3011,6 +3015,7 @@ namespace Vision_System
                                 DateTime.Now.Second.ToString("00");
                 string strFileName = strFolderName + "\\" + strTime +
                     (settingHelper.ImageFormat == SaveImageFormat.BMP ? ".bmp" : ".jpg");
+
                 // save image if it is not null
                 // save original image or scaled image according to config setting
                 CogImageFileTool mImageFileTool = new CogImageFileTool();
@@ -3055,10 +3060,10 @@ namespace Vision_System
             int index = (int)e.Result;
             pageHome.LogMessage("CCD" + (index + 1) + "图片已保存到本地电脑中");
         }
-       
+
         #endregion
 
-        #region Save data in local computer
+        #region Backgroundworker to save data in local computer
         /// <summary>
         /// 初始化图像保存后台线程
         /// </summary>
@@ -3294,7 +3299,7 @@ namespace Vision_System
         }
         #endregion
 
-        #region Program backup in folder
+        #region Backgroundworker to backup vpp program in folder
         private BackgroundWorker bgwSaveProgram;
         private FormShowAsynProg frmProgramBackupProgress;
 
@@ -3361,7 +3366,7 @@ namespace Vision_System
 
         #endregion
 
-        #region Program restore from folder
+        #region Backgroundworker to restore program from backup folder
         private BackgroundWorker bgwRestoreProgram;
         private FormShowAsynProg frmProgramRestoreProgress;
 
