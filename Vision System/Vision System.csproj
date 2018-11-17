@@ -157,6 +157,12 @@
     <Compile Include="FormCommAddressEdit.Designer.cs">
       <DependentUpon>FormCommAddressEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormIOMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIOMonitor.Designer.cs">
+      <DependentUpon>FormIOMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormParamSetting2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,7 +300,7 @@
     </Compile>
     <Compile Include="IniHelper\IniFile.cs" />
     <Compile Include="IniHelper\SettingHelper.cs" />
-    <Compile Include="IOHelper\AdvantechIOHelper.cs" />
+    <Compile Include="IOHelper\IOHelper.cs" />
     <Compile Include="OmronFinsHelper\OmronFinsHelper.cs" />
     <Compile Include="PageCameraSetting.cs">
       <SubType>UserControl</SubType>
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommAddressEdit.resx">
       <DependentUpon>FormCommAddressEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIOMonitor.resx">
+      <DependentUpon>FormIOMonitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormParamSetting2.resx">
       <DependentUpon>FormParamSetting2.cs</DependentUpon>

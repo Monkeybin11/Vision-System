@@ -107,6 +107,8 @@ namespace Vision_System
         private string _AdsAmsNetID = "5.54.159.254.1.1";
         private int _AdsPortNumber = 851;
         private bool _isShowDataView = false;
+        private IOBoardBrand ioBoardBrand = IOBoardBrand.Advantech;
+        private string ioBoardType = "";
         private bool _isIODeviceEnabled = false;
         private int _IODeviceNumber = 0;
         private TriggerEdge _trigEdge = TriggerEdge.Rising;
@@ -136,6 +138,8 @@ namespace Vision_System
         public ViewType ViewType { get => _viewType; set => _viewType = value; }
         public bool IsShowDataView { get => _isShowDataView; set => _isShowDataView = value; }
         public ViewLayout ViewLayout { get => _viewLayout; set => _viewLayout = value; }
+        public IOBoardBrand IoBoardBrand { get => ioBoardBrand; set => ioBoardBrand = value; }
+        public string IoBoardType { get => ioBoardType; set => ioBoardType = value; }
         public bool IsIODeviceEnabled { get => _isIODeviceEnabled; set => _isIODeviceEnabled = value; }
         public int IODeviceNumber { get => _IODeviceNumber; set => _IODeviceNumber = value; }
         public TriggerEdge TrigEdge { get => _trigEdge; set => _trigEdge = value; }

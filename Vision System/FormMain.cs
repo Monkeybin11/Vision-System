@@ -96,7 +96,7 @@ namespace Vision_System
         public static IniFile mainConfigIniFile;
         public static IniFile[] ccdConfigIniFile;
         public static SettingHelper settingHelper = new SettingHelper();
-        public static AdvantechIOHelper iOHelper = new AdvantechIOHelper();
+        public static IOHelper iOHelper = new IOHelper();
 
         // 定义DataTable存储预先定义可供选择的Omron通信数据
         // 为了更好支持中文，添加一列中文描述
@@ -552,6 +552,11 @@ namespace Vision_System
                             FormIOSetting frmIO = new FormIOSetting();
                             frmIO.ShowDialog(this);
                             frmIO.Dispose();
+                            break;
+                        case FormSettingOptionResult.IOMonitor:
+                            FormIOMonitor frmIOMonitor = new FormIOMonitor();
+                            frmIOMonitor.ShowDialog(this);
+                            frmIOMonitor.Dispose();
                             break;
                         case FormSettingOptionResult.TwinCatSetting:
                             FormTwinCatSetting frmTwinCat = new FormTwinCatSetting();
@@ -1058,9 +1063,28 @@ namespace Vision_System
                 default:
                     break;
             }
+            // IO板卡品牌，型号
+            strTemp = mainConfigIniFile.IniReadValue("Main", "IOBoardType");
+            if (!string.IsNullOrEmpty(strTemp))
+            {
+                strArr = strTemp.Split(',');
+                // 品牌
+                if (strArr[0] == "Advantech")
+                {
+                    settingHelper.IoBoardBrand = IOBoardBrand.Advantech;
+                }
+                else if (strArr[0] == "ADLINK")
+                {
+                    settingHelper.IoBoardBrand = IOBoardBrand.ADLINK;
+                }
+                // 型号
+                settingHelper.IoBoardType = strArr[1];
+            }
+            iOHelper.IoBoardBrand = settingHelper.IoBoardBrand;
+            iOHelper.IoBoardType = settingHelper.IoBoardType;
+
             // IO板卡是否使能
-            settingHelper.IsIODeviceEnabled = mainConfigIniFile.IniReadValue("Main", "IsIODeviceEnabled") 
-                == "1" ? true : false;
+            settingHelper.IsIODeviceEnabled = mainConfigIniFile.IniReadValue("Main", "IsIODeviceEnabled") == "1" ? true : false;
 
             // IO板卡号码
             settingHelper.IODeviceNumber = Convert.ToInt16(mainConfigIniFile.IniReadValue("Main", "IOBoardNumber"));
@@ -1475,7 +1499,7 @@ namespace Vision_System
 
                 #region 换型使能信号处理
                 // 只扫描换型使能信号，当有使能信号时检查PN对应的信号，如果有变化才会换型
-                changeoverData = iOHelper.CaptureChangeoverSignal();
+                changeoverData = iOHelper.CaptureChangeoverEnableSignal();
                 if (changeoverData && isCCDOnline)
                 {
                     int index;

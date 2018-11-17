@@ -16,6 +16,7 @@ namespace Vision_System
         PartNoManage,
         ImageDataSetting,
         IOSetting,
+        IOMonitor,
         TwinCatSetting,
         OmronFinsSetting,
         CommFormatSetting,
@@ -67,6 +68,10 @@ namespace Vision_System
                     break;
                 case "btnIOSetting":
                     mSettingResult = FormSettingOptionResult.IOSetting;
+                    this.Close();
+                    break;
+                case "btnIOMonitor":
+                    mSettingResult = FormSettingOptionResult.IOMonitor;
                     this.Close();
                     break;
                 case "btnTwinCatSetting":

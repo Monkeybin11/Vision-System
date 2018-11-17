@@ -35,12 +35,13 @@
             this.btnCommFormatSetting = new System.Windows.Forms.Button();
             this.btnProductManage = new System.Windows.Forms.Button();
             this.btnFailureSetting = new System.Windows.Forms.Button();
+            this.btnIOMonitor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnImageDataSetting
             // 
             this.btnImageDataSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImageDataSetting.Location = new System.Drawing.Point(42, 99);
+            this.btnImageDataSetting.Location = new System.Drawing.Point(221, 35);
             this.btnImageDataSetting.Name = "btnImageDataSetting";
             this.btnImageDataSetting.Size = new System.Drawing.Size(150, 39);
             this.btnImageDataSetting.TabIndex = 0;
@@ -51,18 +52,18 @@
             // btnIOSetting
             // 
             this.btnIOSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIOSetting.Location = new System.Drawing.Point(42, 163);
+            this.btnIOSetting.Location = new System.Drawing.Point(400, 35);
             this.btnIOSetting.Name = "btnIOSetting";
             this.btnIOSetting.Size = new System.Drawing.Size(150, 39);
             this.btnIOSetting.TabIndex = 0;
-            this.btnIOSetting.Text = "IO板卡设置";
+            this.btnIOSetting.Text = "IO端口设置";
             this.btnIOSetting.UseVisualStyleBackColor = true;
             this.btnIOSetting.Click += new System.EventHandler(this.btnOptionSelect_Click);
             // 
             // btnTwinCatSetting
             // 
             this.btnTwinCatSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTwinCatSetting.Location = new System.Drawing.Point(42, 419);
+            this.btnTwinCatSetting.Location = new System.Drawing.Point(579, 115);
             this.btnTwinCatSetting.Name = "btnTwinCatSetting";
             this.btnTwinCatSetting.Size = new System.Drawing.Size(150, 39);
             this.btnTwinCatSetting.TabIndex = 0;
@@ -73,7 +74,7 @@
             // btnOmronFinsSetting
             // 
             this.btnOmronFinsSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOmronFinsSetting.Location = new System.Drawing.Point(42, 355);
+            this.btnOmronFinsSetting.Location = new System.Drawing.Point(400, 115);
             this.btnOmronFinsSetting.Name = "btnOmronFinsSetting";
             this.btnOmronFinsSetting.Size = new System.Drawing.Size(150, 39);
             this.btnOmronFinsSetting.TabIndex = 0;
@@ -84,7 +85,7 @@
             // btnCommFormatSetting
             // 
             this.btnCommFormatSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCommFormatSetting.Location = new System.Drawing.Point(42, 291);
+            this.btnCommFormatSetting.Location = new System.Drawing.Point(221, 115);
             this.btnCommFormatSetting.Name = "btnCommFormatSetting";
             this.btnCommFormatSetting.Size = new System.Drawing.Size(150, 39);
             this.btnCommFormatSetting.TabIndex = 0;
@@ -106,7 +107,7 @@
             // btnFailureSetting
             // 
             this.btnFailureSetting.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFailureSetting.Location = new System.Drawing.Point(42, 227);
+            this.btnFailureSetting.Location = new System.Drawing.Point(42, 115);
             this.btnFailureSetting.Name = "btnFailureSetting";
             this.btnFailureSetting.Size = new System.Drawing.Size(150, 39);
             this.btnFailureSetting.TabIndex = 0;
@@ -114,16 +115,28 @@
             this.btnFailureSetting.UseVisualStyleBackColor = true;
             this.btnFailureSetting.Click += new System.EventHandler(this.btnOptionSelect_Click);
             // 
+            // btnIOMonitor
+            // 
+            this.btnIOMonitor.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIOMonitor.Location = new System.Drawing.Point(579, 35);
+            this.btnIOMonitor.Name = "btnIOMonitor";
+            this.btnIOMonitor.Size = new System.Drawing.Size(150, 39);
+            this.btnIOMonitor.TabIndex = 0;
+            this.btnIOMonitor.Text = "IO监控";
+            this.btnIOMonitor.UseVisualStyleBackColor = true;
+            this.btnIOMonitor.Click += new System.EventHandler(this.btnOptionSelect_Click);
+            // 
             // FormSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(236, 489);
+            this.ClientSize = new System.Drawing.Size(780, 185);
             this.Controls.Add(this.btnProductManage);
             this.Controls.Add(this.btnFailureSetting);
             this.Controls.Add(this.btnCommFormatSetting);
             this.Controls.Add(this.btnOmronFinsSetting);
             this.Controls.Add(this.btnTwinCatSetting);
+            this.Controls.Add(this.btnIOMonitor);
             this.Controls.Add(this.btnIOSetting);
             this.Controls.Add(this.btnImageDataSetting);
             this.Name = "FormSetting";
@@ -143,5 +156,6 @@
         private System.Windows.Forms.Button btnCommFormatSetting;
         private System.Windows.Forms.Button btnProductManage;
         private System.Windows.Forms.Button btnFailureSetting;
+        private System.Windows.Forms.Button btnIOMonitor;
     }
 }
