@@ -17,7 +17,7 @@ namespace Vision_System
     {
         private IOBoardBrand ioBoardBrand = IOBoardBrand.Advantech;
         private string ioBoardType = "";
-        private const int PORTCNT = 2;
+        private int portCnt = 2;
         private const int BITCNT = 8;
         private IniFile IOSettingIniFile;
         private InstantDoCtrl instantDoCtrl1 = null;
@@ -66,9 +66,11 @@ namespace Vision_System
         public SingleCameraIO[] mSingleCameraIO;
 
         #endregion
+
         public IOBoardBrand IoBoardBrand { get => ioBoardBrand; set => ioBoardBrand = value; }
         public string IoBoardType { get => ioBoardType; set => ioBoardType = value; }
         public int DeviceNum { get => _deviceNum; set => _deviceNum = value; }
+        public int PortCnt { get => portCnt; set => portCnt = value; }
         public bool IsIODeviceConnected { get => _isIODeviceConnected; set => _isIODeviceConnected = value; }
         public byte FailureCode { get => _failureCode; set => _failureCode = value; }
         public int? CCDOnline_PortNum { get => _CCDOnline_PortNum; set => _CCDOnline_PortNum = value; }
@@ -119,11 +121,12 @@ namespace Vision_System
                 DataTableIOInfo.Columns.Add("Name", typeof(string));
 
                 // 从配置文件中获取
-                for (int i = 0; i < PORTCNT; i++)
+                // 输入
+                for (int i = 0; i < PortCnt; i++)
                 {
                     for (int j = 0; j < BITCNT; j++)
                     {
-                        string strinput, stroutput;
+                        string strinput;
                         strinput = IOSettingIniFile.IniReadValue("IOInfoTable", "(1" + "," + i + "," + j + ")");
                         DataRow row1 =  DataTableIOInfo.NewRow();
                         row1[0] = 1;
@@ -131,6 +134,14 @@ namespace Vision_System
                         row1[2] = j;
                         row1[3] = strinput;
                         DataTableIOInfo.Rows.Add(row1);
+                    }
+                }
+                // 输出
+                for (int i = 0; i < PortCnt; i++)
+                {
+                    for (int j = 0; j < BITCNT; j++)
+                    {
+                        string stroutput;
                         stroutput = IOSettingIniFile.IniReadValue("IOInfoTable", "(2" + "," + i + "," + j + ")");
                         DataRow row2 = DataTableIOInfo.NewRow();
                         row2[0] = 2;
@@ -400,7 +411,7 @@ namespace Vision_System
         {
             try
             {
-                for (int i = 0; i < PORTCNT; i++)
+                for (int i = 0; i < PortCnt; i++)
                 {
                     for (int j = 0; j < BITCNT; j++)
                     {
@@ -441,19 +452,31 @@ namespace Vision_System
                         instantDoCtrl1 = new InstantDoCtrl();
                         instantDiCtrl1.SelectedDevice = new DeviceInformation(DeviceNum);
                         instantDoCtrl1.SelectedDevice = new DeviceInformation(DeviceNum);
-                        //The default device of project is demo device, users can choose other devices according to their needs. 
                         if (!instantDiCtrl1.Initialized)
                         {
                             MessageBox.Show("No device be selected or device open failed!", "StaticDI");
                             return false;
                         }
+                        // 获取端口数量
+                        PortCnt = instantDiCtrl1.PortCount;
                         break;
                     case IOBoardBrand.ADLINK:
                         short m_dev = 1;
                         // 根据板卡类型进行初始化
-                        if (IoBoardType == "PCI7230")
+                        switch (IoBoardType)
                         {
-                            m_dev = DASK.Register_Card(DASK.PCI_7230, (ushort)DeviceNum);
+                            case "PCI7230":
+                                m_dev = DASK.Register_Card(DASK.PCI_7230, (ushort)DeviceNum);
+                                // 获取端口数量
+                                PortCnt = 2;
+                                break;
+                            case "PCI7432":
+                                m_dev = DASK.Register_Card(DASK.PCI_7432, (ushort)DeviceNum);
+                                // 获取端口数量
+                                PortCnt = 4;
+                                break;
+                            default:
+                                break;
                         }
                         if (m_dev < 0)
                         {

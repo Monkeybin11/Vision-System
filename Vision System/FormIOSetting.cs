@@ -129,8 +129,6 @@ namespace Vision_System
             DataRow[] dataRows;
             int signalCnt;
             int rowIndex;
-            string strName;
-            string strCCDIndex;
             switch (btn.Name)
             {
                 case "btnAddTrigger":

@@ -22,14 +22,13 @@ namespace Vision_System
         private IniFile configIniFile;
         private List<string> ioInputName = new List<string>();
         private List<string> ioOutputName = new List<string>();
+        private int portCnt;
 
         //input
         private Label[] m_portNumStaticDI;
         private Label[] m_portHexStaticDI;
         private ComboBox[,] m_portInputName;
         private PictureBox[,] m_pictrueBoxStaticDI;
-        private const int m_startPort = 0;
-        private const int m_portCountShow = 2;
 
         //output
         private Label[] m_portNum;
@@ -66,68 +65,114 @@ namespace Vision_System
         /// <param name="e"></param>
         private void FormIOSetting_Load(object sender, EventArgs e)
         {
+            // 根据端口的数量设置Page2的可见性
+            portCnt = FormMain.iOHelper.PortCnt;
+            if (portCnt == 2)
+            {
+                this.tabControl1.Controls.Remove(this.tabPage2);
+            }
+
             strConfigFilePath = Utility.GetThisExecutableDirectory() + "Config\\Setting.ini";
             // strIOSettingFilePath = strBaseDirectory + "Config\\IO Table.ini";
             configIniFile = new IniFile(strConfigFilePath);
 
-            // 初始化IO设置和监控
-            //initialize static digital input port
-            InstantDoCtrl1.SelectedDevice = new DeviceInformation(FormMain.settingHelper.IODeviceNumber);
-            InstantDiCtrl1.SelectedDevice = new DeviceInformation(FormMain.settingHelper.IODeviceNumber);
-            //The default device of project is demo device, users can choose other devices according to their needs. 
-            if (!InstantDiCtrl1.Initialized)
+            switch (FormMain.iOHelper.IoBoardBrand)
             {
-                MessageBox.Show("No device be selected or device open failed!", "StaticDI");
-                // this.Close();
-                return;
+                case IOBoardBrand.Advantech:
+                    // 初始化IO设置和监控
+                    InstantDoCtrl1.SelectedDevice = new DeviceInformation(FormMain.settingHelper.IODeviceNumber);
+                    InstantDiCtrl1.SelectedDevice = new DeviceInformation(FormMain.settingHelper.IODeviceNumber);
+
+                    if (!InstantDiCtrl1.Initialized)
+                    {
+                        MessageBox.Show("No device be selected or device open failed!", "StaticDI");
+                        // this.Close();
+                        return;
+                    }
+                    if (!InstantDoCtrl1.Initialized)
+                    {
+                        MessageBox.Show("No device be selected or device open failed!", "StaticDO");
+                        // this.Close();
+                        return;
+                    }
+                    break;
+                case IOBoardBrand.ADLINK:
+                    short m_dev = 1;
+                    // 根据板卡类型进行初始化
+                    switch (FormMain.iOHelper.IoBoardType)
+                    {
+                        case "PCI7230":
+                            m_dev = DASK.Register_Card(DASK.PCI_7230, (ushort)FormMain.settingHelper.IODeviceNumber);
+                            break;
+                        case "PCI7432":
+                            m_dev = DASK.Register_Card(DASK.PCI_7432, (ushort)FormMain.settingHelper.IODeviceNumber);
+                            break;
+                        default:
+                            break;
+                    }
+                    if (m_dev < 0)
+                    {
+                        MessageBox.Show("Register_Card Error");
+                    }
+                    break;
+                default:
+                    break;
             }
 
             this.Text = "Static DI(" + InstantDiCtrl1.SelectedDevice.Description + ")";
 
-            m_portInputName = new ComboBox[m_portCountShow, 8] {
+            m_portInputName = new ComboBox[4, 8] {
                 { IOInputLabel00, IOInputLabel01, IOInputLabel02, IOInputLabel03,
                     IOInputLabel04, IOInputLabel05, IOInputLabel06, IOInputLabel07 },
                 { IOInputLabel10, IOInputLabel11, IOInputLabel12, IOInputLabel13,
                     IOInputLabel14, IOInputLabel15, IOInputLabel16, IOInputLabel17 },
+                { IOInputLabel20, IOInputLabel21, IOInputLabel22, IOInputLabel23,
+                    IOInputLabel24, IOInputLabel25, IOInputLabel26, IOInputLabel27 },
+                { IOInputLabel30, IOInputLabel31, IOInputLabel32, IOInputLabel33,
+                    IOInputLabel34, IOInputLabel35, IOInputLabel36, IOInputLabel37 },
             };
 
-            m_portNumStaticDI = new Label[m_portCountShow] { StaticDIPortNum0, StaticDIPortNum1 };
-            m_portHexStaticDI = new Label[m_portCountShow] { StaticDIPortHex0, StaticDIPortHex1 };
-            m_pictrueBoxStaticDI = new PictureBox[m_portCountShow, 8]{
+            m_portNumStaticDI = new Label[4] { StaticDIPortNum0, StaticDIPortNum1, StaticDIPortNum2, StaticDIPortNum3 };
+            m_portHexStaticDI = new Label[4] { StaticDIPortHex0, StaticDIPortHex1, StaticDIPortHex2, StaticDIPortHex3 };
+
+            m_pictrueBoxStaticDI = new PictureBox[4, 8]{
              {StaticDIpictureBox00, StaticDIpictureBox01, StaticDIpictureBox02, StaticDIpictureBox03,
                     StaticDIpictureBox04, StaticDIpictureBox05,StaticDIpictureBox06, StaticDIpictureBox07},
              {StaticDIpictureBox10, StaticDIpictureBox11, StaticDIpictureBox12, StaticDIpictureBox13,
                     StaticDIpictureBox14, StaticDIpictureBox15,StaticDIpictureBox16, StaticDIpictureBox17},
+             {StaticDIpictureBox20, StaticDIpictureBox21, StaticDIpictureBox22, StaticDIpictureBox23,
+                    StaticDIpictureBox24, StaticDIpictureBox25,StaticDIpictureBox26, StaticDIpictureBox27},
+             {StaticDIpictureBox30, StaticDIpictureBox31, StaticDIpictureBox32, StaticDIpictureBox33,
+                    StaticDIpictureBox34, StaticDIpictureBox35,StaticDIpictureBox36, StaticDIpictureBox37},
             };
 
             //enable the timer to read DI ports status
             timer1.Tick += new System.EventHandler(this.timer1_Tick);
             timer1.Enabled = true;
 
-            //initialize static digital output port
-            //The default device of project is demo device, users can choose other devices according to their needs. 
-            if (!InstantDoCtrl1.Initialized)
-            {
-                MessageBox.Show("No device be selected or device open failed!", "StaticDO");
-                // this.Close();
-                return;
-            }
-
-            m_portOutputName = new ComboBox[ConstVal.PortCountShow, 8]
+            m_portOutputName = new ComboBox[4, 8]
             {
                 {IOOutputLabel00, IOOutputLabel01, IOOutputLabel02, IOOutputLabel03,
                     IOOutputLabel04,  IOOutputLabel05, IOOutputLabel06, IOOutputLabel07},
                 {IOOutputLabel10, IOOutputLabel11, IOOutputLabel12, IOOutputLabel13,
                     IOOutputLabel14, IOOutputLabel15, IOOutputLabel16, IOOutputLabel17},
+                {IOOutputLabel20, IOOutputLabel21, IOOutputLabel22, IOOutputLabel23,
+                    IOOutputLabel24, IOOutputLabel25, IOOutputLabel26, IOOutputLabel27},
+                {IOOutputLabel30, IOOutputLabel31, IOOutputLabel32, IOOutputLabel33,
+                    IOOutputLabel34, IOOutputLabel35, IOOutputLabel36, IOOutputLabel37},
             };
 
-            m_portNum = new Label[ConstVal.PortCountShow] { PortNum0, PortNum1 };
-            m_portHex = new Label[ConstVal.PortCountShow] { PortHex0, PortHex1 };
-            m_pictrueBox = new PictureBox[ConstVal.PortCountShow, 8]{
-             {pictureBox00, pictureBox01, pictureBox02, pictureBox03,
-                    pictureBox04, pictureBox05,pictureBox06, pictureBox07},
-             {pictureBox10, pictureBox11, pictureBox12, pictureBox13,
-                    pictureBox14, pictureBox15,pictureBox16, pictureBox17},
+            m_portNum = new Label[4] { StaticDOPortNum0, StaticDOPortNum1, StaticDOPortNum2, StaticDOPortNum3 };
+            m_portHex = new Label[4] { StaticDOPortHex0, StaticDOPortHex1, StaticDOPortHex2, StaticDOPortHex3 };
+            m_pictrueBox = new PictureBox[4, 8]{
+             {StaticDOpictureBox00, StaticDOpictureBox01, StaticDOpictureBox02, StaticDOpictureBox03,
+                    StaticDOpictureBox04, StaticDOpictureBox05,StaticDOpictureBox06, StaticDOpictureBox07},
+             {StaticDOpictureBox10, StaticDOpictureBox11, StaticDOpictureBox12, StaticDOpictureBox13,
+                    StaticDOpictureBox14, StaticDOpictureBox15,StaticDOpictureBox16, StaticDOpictureBox17},
+             {StaticDOpictureBox20, StaticDOpictureBox21, StaticDOpictureBox22, StaticDOpictureBox23,
+                    StaticDOpictureBox24, StaticDOpictureBox25,StaticDOpictureBox26, StaticDOpictureBox27},
+             {StaticDOpictureBox30, StaticDOpictureBox31, StaticDOpictureBox32, StaticDOpictureBox33,
+                    StaticDOpictureBox34, StaticDOpictureBox35,StaticDOpictureBox36, StaticDOpictureBox37},
             };
 
             // 初始化端口名称
@@ -143,7 +188,7 @@ namespace Vision_System
             ioOutputName.Add("NA");
 
             // 将端口名称添加到下拉列表中
-            for (int i = 0; i < m_portCountShow; i++)
+            for (int i = 0; i < portCnt; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
@@ -159,55 +204,10 @@ namespace Vision_System
                     m_portOutputName[i, j].SelectedIndex = 0;
                 }
             }
-            // 初始化端口状态
-            InitializePortState();
             // 初始化端口名称
             InitializePortName();
-        }
-
-        /// <summary>
-        /// 初始化端口状态
-        /// </summary>
-        private void InitializePortState()
-        {
-            byte portData = 0;
-            byte portDir = 0xFF;
-            ErrorCode err = ErrorCode.Success;
-            byte[] mask = InstantDoCtrl1.Features.DataMask;
-            for (int i = 0; (i + ConstVal.StartPort) < InstantDoCtrl1.Features.PortCount && i < ConstVal.PortCountShow; ++i)
-            {
-                err = InstantDoCtrl1.Read(i + ConstVal.StartPort, out portData);
-                if (err != ErrorCode.Success)
-                {
-                    HandleError(err);
-                    return;
-                }
-
-                m_portNum[i].Text = (i + ConstVal.StartPort).ToString();
-                m_portHex[i].Text = portData.ToString("X2");
-
-                if (InstantDoCtrl1.PortDirection != null)
-                {
-                    portDir = (byte)InstantDoCtrl1.PortDirection[i + ConstVal.StartPort].Direction;
-                }
-
-                // Set picture box state
-                for (int j = 0; j < 8; ++j)
-                {
-                    if (((portDir >> j) & 0x1) == 0 || ((mask[i] >> j) & 0x1) == 0)  // Bit direction is input.
-                    {
-                        m_pictrueBox[i, j].Image = imageList2.Images[2];
-                        m_pictrueBox[i, j].Enabled = false;
-                    }
-                    else
-                    {
-                        m_pictrueBox[i, j].Click += new EventHandler(PictureBox_Click);
-                        m_pictrueBox[i, j].Tag = new DoBitInformation((portData >> j) & 0x1, i + ConstVal.StartPort, j);
-                        m_pictrueBox[i, j].Image = imageList2.Images[(portData >> j) & 0x1];
-                    }
-                    m_pictrueBox[i, j].Invalidate();
-                }
-            }
+            // 初始化端口状态
+            InitializePortState();
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Vision_System
         /// </summary>
         private void InitializePortName()
         {
-            for (int i = 0; i < ConstVal.PortCountShow; i++)
+            for (int i = 0; i < portCnt; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
@@ -230,6 +230,75 @@ namespace Vision_System
                     if (dataRows2.Length == 1)
                         m_portOutputName[i, j].SelectedIndex = ioOutputName.IndexOf(dataRows2[0]["Name"].ToString());
                 }
+            }
+        }
+
+        /// <summary>
+        /// 初始化端口状态，输出端口
+        /// </summary>
+        private void InitializePortState()
+        {
+            byte portData = 0;
+            byte portDir = 0xFF;
+            switch (FormMain.iOHelper.IoBoardBrand)
+            {
+                case IOBoardBrand.Advantech:
+                    ErrorCode err = ErrorCode.Success;
+                    byte[] mask = InstantDoCtrl1.Features.DataMask;
+                    for (int i = 0; i < portCnt; ++i)
+                    {
+                        err = InstantDoCtrl1.Read(i, out portData);
+                        if (err != ErrorCode.Success)
+                        {
+                            HandleError(err);
+                            return;
+                        }
+
+                        m_portNum[i].Text = i.ToString();
+                        m_portHex[i].Text = portData.ToString("X2");
+
+                        if (InstantDoCtrl1.PortDirection != null)
+                        {
+                            portDir = (byte)InstantDoCtrl1.PortDirection[i].Direction;
+                        }
+
+                        // Set picture box state
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            if (((portDir >> j) & 0x1) == 0 || ((mask[i] >> j) & 0x1) == 0)  // Bit direction is input.
+                            {
+                                m_pictrueBox[i, j].Image = imageList2.Images[2];
+                                m_pictrueBox[i, j].Enabled = false;
+                            }
+                            else
+                            {
+                                m_pictrueBox[i, j].Click += new EventHandler(PictureBox_Click);
+                                m_pictrueBox[i, j].Tag = new DoBitInformation((portData >> j) & 0x1, i, j);
+                                m_pictrueBox[i, j].Image = imageList2.Images[(portData >> j) & 0x1];
+                            }
+                            m_pictrueBox[i, j].Invalidate();
+                        }
+                    }
+                    break;
+                case IOBoardBrand.ADLINK:
+                    uint data = 0;
+                    for (int i = 0; i < portCnt; ++i)
+                    {
+                        DASK.DO_ReadPort((ushort)FormMain.iOHelper.DeviceNum, (ushort)i, out data);
+                        m_portNum[i].Text = i.ToString();
+                        m_portHex[i].Text = portData.ToString("X2");
+                        // Set picture box state
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            m_pictrueBox[i, j].Click += new EventHandler(PictureBox_Click);
+                            m_pictrueBox[i, j].Tag = new DoBitInformation((portData >> j) & 0x1, i, j);
+                            m_pictrueBox[i, j].Image = imageList2.Images[(portData >> j) & 0x1];
+                            m_pictrueBox[i, j].Invalidate();
+                        }
+                    }
+                        break;
+                default:
+                    break;
             }
         }
 
@@ -250,20 +319,30 @@ namespace Vision_System
             box.Invalidate();
 
             // refresh hex
-            int state = Int32.Parse(m_portHex[boxInfo.PortNum - ConstVal.StartPort].Text, NumberStyles.AllowHexSpecifier);
+            int state = Int32.Parse(m_portHex[boxInfo.PortNum].Text, NumberStyles.AllowHexSpecifier);
             state &= ~(0x1 << boxInfo.BitNum);
             state |= boxInfo.BitValue << boxInfo.BitNum;
 
-            m_portHex[boxInfo.PortNum - ConstVal.StartPort].Text = state.ToString("X2");
-            err = InstantDoCtrl1.Write(boxInfo.PortNum, (byte)state);
-            if (err != ErrorCode.Success)
+            m_portHex[boxInfo.PortNum].Text = state.ToString("X2");
+            switch (FormMain.iOHelper.IoBoardBrand)
             {
-                HandleError(err);
+                case IOBoardBrand.Advantech:
+                    err = InstantDoCtrl1.Write(boxInfo.PortNum, (byte)state);
+                    if (err != ErrorCode.Success)
+                    {
+                        HandleError(err);
+                    }
+                    break;
+                case IOBoardBrand.ADLINK:
+                    DASK.DO_WritePort((ushort)FormMain.iOHelper.DeviceNum, (byte)boxInfo.PortNum, (uint)state);
+                    break;
+                default:
+                    break;
             }
         }
 
         /// <summary>
-        /// 定时器更新IO端口状态
+        /// 定时器更新IO端口状态，输入端口
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -272,26 +351,45 @@ namespace Vision_System
             // read Di port state
             byte portData = 0;
             ErrorCode err = ErrorCode.Success;
-
-            for (int i = 0; (i + m_startPort) < InstantDiCtrl1.Features.PortCount && i < m_portCountShow; ++i)
+            switch (FormMain.iOHelper.IoBoardBrand)
             {
-                err = InstantDiCtrl1.Read(i + m_startPort, out portData);
-                if (err != ErrorCode.Success)
-                {
-                    timer1.Enabled = false;
-                    HandleError(err);
-                    return;
-                }
+                case IOBoardBrand.Advantech:
+                    for (int i = 0; i < portCnt; ++i)
+                    {
+                        err = InstantDiCtrl1.Read(i, out portData);
+                        if (err != ErrorCode.Success)
+                        {
+                            timer1.Enabled = false;
+                            HandleError(err);
+                            return;
+                        }
+                        m_portNumStaticDI[i].Text = i.ToString();
+                        m_portHexStaticDI[i].Text = portData.ToString("X2");
 
-                m_portNumStaticDI[i].Text = (i + m_startPort).ToString();
-                m_portHexStaticDI[i].Text = portData.ToString("X2");
+                        // Set picture box state
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            m_pictrueBoxStaticDI[i, j].Image = imageList1.Images[(portData >> j) & 0x1];
+                            m_pictrueBoxStaticDI[i, j].Invalidate();
+                        }
+                    }
+                    break;
+                case IOBoardBrand.ADLINK:
+                    for (int i = 0; i < portCnt; ++i)
+                    {
+                        uint data = 0;
+                        DASK.DI_ReadPort((ushort)FormMain.iOHelper.DeviceNum, (ushort)i, out data);
+                        m_portNumStaticDI[i].Text = i.ToString();
+                        m_portHexStaticDI[i].Text = portData.ToString("X2");
 
-                // Set picture box state
-                for (int j = 0; j < 8; ++j)
-                {
-                    m_pictrueBoxStaticDI[i, j].Image = imageList1.Images[(portData >> j) & 0x1];
-                    m_pictrueBoxStaticDI[i, j].Invalidate();
-                }
+                        // Set picture box state
+                        for (int j = 0; j < 8; ++j)
+                        {
+                            m_pictrueBoxStaticDI[i, j].Image = imageList1.Images[(portData >> j) & 0x1];
+                            m_pictrueBoxStaticDI[i, j].Invalidate();
+                        }
+                    }
+                    break;
             }
         }
 
@@ -304,10 +402,8 @@ namespace Vision_System
         {
             Button btn = sender as Button;
             DataRow[] dataRows;
-            int signalCnt;
             int rowIndex;
             string strName;
-            string strCCDIndex;
             switch (btn.Name)
             {
                 case "btnOK":
@@ -315,7 +411,7 @@ namespace Vision_System
                     List<string> inputnameList = new List<string>();
                     List<string> outputnameList = new List<string>();
 
-                    for (int i = 0; i < ConstVal.PortCountShow; i++)
+                    for (int i = 0; i < portCnt; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
@@ -330,7 +426,7 @@ namespace Vision_System
 
                     if (CheckStringListDistinct(inputnameList) && CheckStringListDistinct(outputnameList))
                     {
-                        for (int i = 0; i < ConstVal.PortCountShow; i++)
+                        for (int i = 0; i < portCnt; i++)
                         {
                             for (int j = 0; j < 8; j++)
                             {
@@ -388,7 +484,7 @@ namespace Vision_System
             ioInputName.Add("NA");
             ioOutputName.Add("NA");
 
-            for (int i = 0; i < m_portCountShow; i++)
+            for (int i = 0; i < portCnt; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
@@ -406,7 +502,7 @@ namespace Vision_System
                 }
             }
 
-            for (int i = 0; i < ConstVal.PortCountShow; i++)
+            for (int i = 0; i < portCnt; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
@@ -480,8 +576,7 @@ namespace Vision_System
                 get { return m_portNum; }
                 set
                 {
-                    if ((value - ConstVal.StartPort) >= 0
-                       && (value - ConstVal.StartPort) <= (ConstVal.PortCountShow - 1))
+                    if (value >= 0 && value <= 3)
                     {
                         m_portNum = value;
                     }
@@ -499,12 +594,6 @@ namespace Vision_System
                 }
             }
             #endregion
-        }
-
-        public static class ConstVal
-        {
-            public const int StartPort = 0;
-            public const int PortCountShow = 2;
         }
     }
 }
